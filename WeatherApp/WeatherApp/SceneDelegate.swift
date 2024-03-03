@@ -15,8 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let detailVC = UIViewController()
-            detailVC.view.backgroundColor = UIColor.red
+            let detailVC = DetailModuleBuilder.build()
             let navigationController = UINavigationController(rootViewController: detailVC)
             window.rootViewController = navigationController
             self.window = window
