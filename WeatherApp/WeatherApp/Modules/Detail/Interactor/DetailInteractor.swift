@@ -9,7 +9,7 @@ import UIKit
 
 protocol DetailInteractorProtocols: AnyObject {
     var provider: NetworkProviderProtocol { get }
-    func retrieveCurrentWeather()
+    func retrieveCurrentWeather(latitude: String, longitude: String)
     func retrieveCurrentWeatherIcon(with code: String)
     
 }
@@ -24,8 +24,8 @@ class DetailInteractor: DetailInteractorProtocols {
         self.provider = provider
     }
     
-    func retrieveCurrentWeather() {
-        provider.getDecodable(path: .weatherData, query: .weatherData(latitude: "34.0194704", longitude: "-118.4912273")) { [weak self] (result: Result<CurrentWeatherResponse, Error>) in
+    func retrieveCurrentWeather(latitude: String, longitude: String) {
+        provider.getDecodable(path: .weatherData, query: .weatherData(latitude: latitude, longitude: longitude)) { [weak self] (result: Result<CurrentWeatherResponse, Error>) in
             switch result {
             case .success(let response):
                 self?.detailPresenter?.onFetchCurrentWeatherSuccess(response: response)
@@ -45,6 +45,4 @@ class DetailInteractor: DetailInteractorProtocols {
             }
         }
     }
-    
-    
 }

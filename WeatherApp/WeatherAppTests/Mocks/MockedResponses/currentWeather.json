@@ -1,0 +1,43 @@
+{
+   "coord":{
+      "lon":-118.4912,
+      "lat":34.0195
+   },
+   "weather":[
+      {
+         "id":804,
+         "main":"Clouds",
+         "description":"overcast clouds",
+         "icon":"04d"
+      }
+   ],
+   "base":"stations",
+   "main":{
+      "temp":287.53,
+      "feels_like":287.14,
+      "temp_min":285.83,
+      "temp_max":289.15,
+      "pressure":1015,
+      "humidity":81
+   },
+   "visibility":10000,
+   "wind":{
+      "speed":5.66,
+      "deg":260
+   },
+   "clouds":{
+      "all":100
+   },
+   "dt":1709427108,
+   "sys":{
+      "type":2,
+      "id":2006060,
+      "country":"US",
+      "sunrise":1709389252,
+      "sunset":1709430685
+   },
+   "timezone":-28800,
+   "id":5393212,
+   "name":"Santa Monica",
+   "cod":200
+}

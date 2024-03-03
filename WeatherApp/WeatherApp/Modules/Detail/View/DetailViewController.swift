@@ -28,9 +28,7 @@ class DetailViewController: UIViewController {
         static let windDegLabelSize: CGFloat = 24
         static let textColor: UIColor = UIColor.lightGray
         static let placeLabelTopPadding: CGFloat = 50
-        static let weatherIconImageViewSize: CGFloat = 200
-        static let weatherIconImageViewTopPadding: CGFloat = 50
-        static let mainTempLabelTopPadding: CGFloat = 30
+        static let weatherIconImageViewSize: CGFloat = 250
         static let weatherDescriptionLabelTopPadding: CGFloat = 20
         static let tempStackViewTopPadding: CGFloat = 20
         static let windStackViewTopPadding: CGFloat = 20
@@ -38,13 +36,15 @@ class DetailViewController: UIViewController {
         static let backgroundColor: UIColor = UIColor.black
         static let navigationTitleTextColor: UIColor = UIColor.white
         static let gradeSymbol: String = "°"
-        static let tempStackViewSpacing: CGFloat = 5
+        static let tempStackViewSpacing: CGFloat = 4
+        static let windStackViewSpacing: CGFloat = 4
     }
     
     private enum Wording {
         static let title: String = "Weather app"
         static let minTempKey: String = "Low: "
         static let maxTempKey: String = "High: "
+        static let windKey: String = "Wind: "
     }
     
     var detailPresenter: DetailPresenterProtocols?
@@ -125,6 +125,7 @@ class DetailViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
+        stackView.spacing = Constants.windStackViewSpacing
         return stackView
     }()
     
@@ -169,12 +170,12 @@ class DetailViewController: UIViewController {
         weatherIconImageView.heightAnchor.constraint(equalToConstant: Constants.weatherIconImageViewSize).isActive = true
         weatherIconImageView.widthAnchor.constraint(equalToConstant: Constants.weatherIconImageViewSize).isActive = true
         weatherIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        weatherIconImageView.topAnchor.constraint(equalTo: placeLabel.bottomAnchor, constant: Constants.weatherIconImageViewTopPadding).isActive = true
+        weatherIconImageView.topAnchor.constraint(equalTo: placeLabel.bottomAnchor).isActive = true
         
         //mainTempLabel
         
         mainTempLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mainTempLabel.topAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor, constant: Constants.mainTempLabelTopPadding).isActive = true
+        mainTempLabel.topAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor).isActive = true
         
         
         //weatherDescriptionLabel
@@ -229,8 +230,8 @@ extension DetailViewController: DetailViewProtocols {
         weatherDescriptionLabel.text = weatherDescription
         minTempLabel.text = Wording.minTempKey + minTemp + Constants.gradeSymbol
         maxTempLabel.text = Wording.maxTempKey + maxTemp + Constants.gradeSymbol
-        windSpeedLabel.text = windSpeed
-        windDegLabel.text = windDeg
+        windSpeedLabel.text = Wording.windKey + windSpeed
+        windDegLabel.text = "(" + windDeg + ")"
     }
     
     func setWeatherIcon(with imageData: Data) {

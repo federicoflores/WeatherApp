@@ -30,7 +30,7 @@ class DetailPresenter: DetailPresenterProtocols {
     
     func fetchCurrentWeather() {
         detailView?.showLoadingView()
-        detailInteractor?.retrieveCurrentWeather()
+        detailInteractor?.retrieveCurrentWeather(latitude: "34.0194704", longitude: "-118.4912273")
     }
     
     func onFetchCurrentWeatherSuccess(response: CurrentWeatherResponse) {
@@ -49,10 +49,10 @@ class DetailPresenter: DetailPresenterProtocols {
         detailView?.setWeatherIcon(with: iconData)
         detailView?.setWeatherInfo(
             place: response?.name ?? "",
-            mainTemp: "\(response?.main.temp ?? 0)",
+            mainTemp: "\(Int(response?.main.temp ?? 0))",
             weatherDescription: "\(response?.weather.first?.description ?? "")",
-            minTemp: "\(response?.main.tempMin ?? 0)",
-            maxTemp: "\(response?.main.tempMax ?? 0)",
+            minTemp: "\(Int(response?.main.tempMin ?? 0))",
+            maxTemp: "\(Int(response?.main.tempMax ?? 0))",
             windSpeed: "\(response?.wind.speed ?? 0)",
             windDeg: "\(response?.wind.deg ?? 0)")
     }
