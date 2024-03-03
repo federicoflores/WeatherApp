@@ -235,7 +235,7 @@ extension DetailViewController: DetailViewProtocols {
     }
     
     func setWeatherIcon(with imageData: Data) {
-        if let image = UIImage(data: imageData)?.withRenderingMode(.alwaysTemplate) {
+        if let image = UIImage(data: imageData)?.withRenderingMode(.alwaysOriginal) {
             weatherIconImageView.image = image
         }
     }
